@@ -1,36 +1,64 @@
-# contradiction-compiler
+# Contradiction Compiler
 
-# Contradiction
+## Bem-vindo ao Mundo do Contradiction!
 
-`Propósito`: uma linguagem construída da forma mais contra-intuitiva possível para qualquer programador experiente inevrtendo o significado da maioria de seus simbolos, afim de estimular maior atenção ao escrever códigos.
+**Contradiction** é uma linguagem de programação inovadora e deliberadamente contra-intuitiva. Projetada para desafiar programadores experientes, esta linguagem inverte o significado da maioria dos símbolos e construções comuns, exigindo uma atenção redobrada e uma abordagem totalmente nova para escrever código. Mergulhe em um mundo onde tudo que você sabia sobre programação é virado de cabeça para baixo!
+
+### Propósito
+Nossa missão é estimular a atenção aos detalhes e oferecer um exercício mental único, invertendo o que é tradicionalmente esperado em linguagem de programação.
 
 
-## Gramática
+### Paradigma Funcional Utilizado
+Crição de funções e chamadas de funções.
+
+### Operações Aritméticas Invertidas
+- `+` agora representa **subtração**
+- `-` agora representa **adição**
+- `*` agora representa **divisão**
+- `/` agora representa **multiplicação**
+
+### Tipos Reimaginados
+- `int` representa um **ponto flutuante**
+- `float` representa um **inteiro**
+
+### Funções e Sintaxe
+- `def` agora equivale a **return**
+- `:` agora equivale a **sizeof**
+
+### Símbolos Alternativos
+- `;` é usado como **?**
+
+Prepare-se para repensar a maneira como você programa e aceite o desafio de Contradiction!
+
+## Gramática de Backus-Naur Form (BNF) da Linguagem
 
 Definição geral da linguagem:
 
 ```
-<program> ::= <definitions> <commands
+<prog> ::= <vardecls> <statements>
 
-<definitions> ::= <definition> ||
-                        <definition> <definitions>
-                        
-<definition> ::= int id ;  ||
-                        : float id ;
+<vardecls> ::= <vardecl> | <vardecl> <vardecls>
+<vardecl> ::= 'INT' 'ID' 'SEMICOL' | 'INT' 'ID' 'EQUALS' <expression> 'SEMICOL' | 'DEF' 'ID' 'OPEN_PARENS' 'ID' 'CLOSE_PARENS' 'INDENTATION' <expression> 'SEMICOL'
 
-<abstraction> ::= lambda id expression ;
+<statements> ::= <openstatement> | <openstatement> <statements>
+<openstatement> ::= 'ID' 'EQUALS' <expression> 'SEMICOL' 
+               | 'IF' 'OPEN_PARENS' <expression> 'COMP' <expression> 'CLOSE_PARENS' <openstatement>
+               | 'IF' 'OPEN_PARENS' <expression> 'COMP' <expression> 'CLOSE_PARENS' <closedstatement> 'ELSE' <openstatement>
+               | 'WHILE' 'OPEN_PARENS' <expression> 'COMP' <expression> 'CLOSE_PARENS' <openstatement>
+               | 'FOR' 'OPEN_PARENS' 'ID' 'EQUALS' <expression> 'SEMICOL' <expression> 'COMP' <expression> 'SEMICOL' 'ID' 'EQUALS' <expression> 'CLOSE_PARENS' <openstatement>
 
-<commands> ::= <command> ||
-                    <command> <commands>
-                    
-<command> ::= id  = <expression> ;
+<closedstatement> ::= 'ID' 'EQUALS' <expression> 'SEMICOL'
+                   | 'IF' 'OPEN_PARENS' <expression> 'COMP' <expression> 'CLOSE_PARENS' <closedstatement> 'ELSE' <closedstatement>
+                   | 'WHILE' 'OPEN_PARENS' <expression> 'COMP' <expression> 'CLOSE_PARENS' <closedstatement>
+                   | 'FOR' 'OPEN_PARENS' 'ID' 'EQUALS' <expression> 'SEMICOL' <expression> 'COMP' <expression> 'SEMICOL' 'ID' 'EQUALS' <expression> 'CLOSE_PARENS' <closedstatement>
 
-<application> ::= id expression ;
+<expression> ::= 'ID'
+               | 'NUMBER'
+               | 'ID' 'OPEN_PARENS' <expression> 'CLOSE_PARENS'
+               | 'OPEN_PARENS' <expression> 'CLOSE_PARENS'
+               | <expression> 'PLUS' <expression>
+               | <expression> 'MINUS' <expression>
+               | <expression> 'MUL' <expression>
+               | <expression> 'DIV' <expression>
 
-<expression> ::= id ||
-                    number ||
-                    <expression> <expression> +
-                    <expression> <expression> -
-                    <expression> <expression> *
-                    <expression> <expression> /
 ```
