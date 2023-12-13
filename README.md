@@ -7,6 +7,10 @@
 ### Propósito
 Nossa missão é estimular a atenção aos detalhes e oferecer um exercício mental único, invertendo o que é tradicionalmente esperado em linguagem de programação.
 
+
+### Paradigma Funcional Utilizado
+Crição de funções e chamadas de funções.
+
 ### Operações Aritméticas Invertidas
 - `+` agora representa **subtração**
 - `-` agora representa **adição**
