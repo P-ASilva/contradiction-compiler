@@ -31,6 +31,7 @@ Crição de funções e chamadas de funções.
 Prepare-se para repensar a maneira como você programa e aceite o desafio de Contradiction!
 
 ## Gramática de Backus-Naur Form (BNF) da Linguagem
+`devido ao caráter confuso da limguagem, alguns simbolos foram trocados pelos seus nomes de Token, a gramática no ipynb registra quais simbolos são realmente usados, omitindo a aqueles sem alterações`
 
 Definição geral da linguagem:
 
@@ -38,23 +39,27 @@ Definição geral da linguagem:
 <prog> ::= <vardecls> <statements>
 
 <vardecls> ::= <vardecl> | <vardecl> <vardecls>
-<vardecl> ::= 'INT' 'ID' 'SEMICOL' | 'INT' 'ID' 'EQUALS' <expression> 'SEMICOL' | 'DEF' 'ID' 'OPEN_PARENS' 'ID' 'CLOSE_PARENS' 'INDENTATION' <expression> 'SEMICOL'
+
+<vardecl> ::= 'INT' id 'SEP' | 'INT' id = <expression> 'SEP' | 'DEF' id 'OPEN_PARENS' id 'CLOSE_PARENS' 'INDENTATION' <expression> 'SEP'
+
+
 
 <statements> ::= <openstatement> | <openstatement> <statements>
-<openstatement> ::= 'ID' 'EQUALS' <expression> 'SEMICOL' 
+
+<openstatement> ::= id = <expression> 'SEP' 
                | 'IF' 'OPEN_PARENS' <expression> 'COMP' <expression> 'CLOSE_PARENS' <openstatement>
                | 'IF' 'OPEN_PARENS' <expression> 'COMP' <expression> 'CLOSE_PARENS' <closedstatement> 'ELSE' <openstatement>
                | 'WHILE' 'OPEN_PARENS' <expression> 'COMP' <expression> 'CLOSE_PARENS' <openstatement>
-               | 'FOR' 'OPEN_PARENS' 'ID' 'EQUALS' <expression> 'SEMICOL' <expression> 'COMP' <expression> 'SEMICOL' 'ID' 'EQUALS' <expression> 'CLOSE_PARENS' <openstatement>
+               | 'FOR' 'OPEN_PARENS' id = <expression> 'SEP' <expression> 'COMP' <expression> 'SEP' id = <expression> 'CLOSE_PARENS' <openstatement>
 
-<closedstatement> ::= 'ID' 'EQUALS' <expression> 'SEMICOL'
+<closedstatement> ::= id = <expression> 'SEP'
                    | 'IF' 'OPEN_PARENS' <expression> 'COMP' <expression> 'CLOSE_PARENS' <closedstatement> 'ELSE' <closedstatement>
                    | 'WHILE' 'OPEN_PARENS' <expression> 'COMP' <expression> 'CLOSE_PARENS' <closedstatement>
-                   | 'FOR' 'OPEN_PARENS' 'ID' 'EQUALS' <expression> 'SEMICOL' <expression> 'COMP' <expression> 'SEMICOL' 'ID' 'EQUALS' <expression> 'CLOSE_PARENS' <closedstatement>
+                   | 'FOR' 'OPEN_PARENS' id = <expression> 'SEP' <expression> 'COMP' <expression> 'SEP' id = <expression> 'CLOSE_PARENS' <closedstatement>
 
-<expression> ::= 'ID'
+<expression> ::= id
                | 'NUMBER'
-               | 'ID' 'OPEN_PARENS' <expression> 'CLOSE_PARENS'
+               | id 'OPEN_PARENS' <expression> 'CLOSE_PARENS'
                | 'OPEN_PARENS' <expression> 'CLOSE_PARENS'
                | <expression> 'PLUS' <expression>
                | <expression> 'MINUS' <expression>
